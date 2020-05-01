@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 // Handle DM Command
 exports.handle = (prefix, msg) => {
-    const args = msg.content.substring(prefix.length).split(" ");
+    const args = msg.content.toLowerCase().substring(prefix.length).split(" ");
     if(commands[args[0]] !== undefined){
         commands[args[0]](msg, args);
     }
@@ -10,7 +10,51 @@ exports.handle = (prefix, msg) => {
 
 // Available DM Commands
 const commands = {
+    /**
+     * Get general information about BuyCord
+     */
     about : (msg, args) => {
+        const about = new Discord.MessageEmbed()
+        .setTitle(`BuyCord`)
+        .addField("Bot Version", "v1.0 b3f32")
+        .addField("About", "BuyCord started in 2020 with the aim of giving server owners the ability to sell real items for real money, this includes roles, access to channels or private channels as well as physical items.")
+        .addField("Disclaimer", "BuyCord is not resposible for any content that may have been put up or sold by server owners.")
+        .addField("Support", "support@buycord.net", true)
+        .addField("Social", "@BuyCord", true)
+        .addField("Abuse", "abuse@buycord.net", true)
+        .addField("Thank You", "https://buycord.net")
+        .setFooter("(c) 2020 BuyCord. Discord is not affilated with BuyCord.")
+        .setColor(0x005c9e);
+        msg.reply(about);
+    },
+    /**
+     * Give the user some commands they can run!
+     */
+    help : (msg, args) => {
+        if(args.length === 1 || args[1].toLowerCase() === "dms"){
+            const about = new Discord.MessageEmbed()
+            .setTitle(`BuyCord DMs Help`)
+            .addField("`!about`", "Learn more about BuyCord and get key contact information.")
+            .addField("`!help`", "Get all the BuyCord Commands. Try `!help server`")
+            .setFooter("(c) 2020 BuyCord. Discord is not affilated with BuyCord.")
+            .setColor(0x005c9e);
+            msg.reply(about);
+        }else if(args[1].toLowerCase() === "server"){
+            const about = new Discord.MessageEmbed()
+            .setTitle(`BuyCord Server Help`)
+            .addField("Info", "These commands can only be run in servers and not over a private message.")
+            .addField("`!buy`", "Get a DM from the bot with available packages.")
+
+            .addField("`!buycord` Commands", "These commands require the **Administrator** permission to run.")
+            .addField("`!buycord key [key]`", "Link your Discord Server with BuyCord to begin selling.")
+            .addField("`!buycord force-check`", "Checks for any outstanding purchaes to action in the server.")
+            .setFooter("(c) 2020 BuyCord. Discord is not affilated with BuyCord.")
+            .setColor(0x005c9e);
+            msg.reply(about);
+        }else{
+            msg.reply("That help wasn't found, try just `!help` :thinking:")
+        }
+
     }
 };
 

@@ -21,7 +21,7 @@ client.on('message', msg => {
         return;
     }
 
-    const args = msg.content.substring(prefix.length).split(" ");
+    const args = msg.content.toLowerCase().substring(prefix.length).split(" ");
     if(ServerCommands[args[0]] !== undefined){
         ServerCommands[args[0]](msg, args);
     }

@@ -30,7 +30,6 @@ exports.commands = {
      * pulls up the categories and sends them to the sender.
      */
     buy: (msg, args) => {
-        msg.reply(`server id is ${msg.guild.id}`);
 
         // Load in packages here
         const packages = new Discord.MessageEmbed()
@@ -46,6 +45,9 @@ exports.commands = {
 
         // Send them a DM with the packages list
         msg.member.send(packages).then((ms) => {
+
+            // Reply to the user to say the message is in their DM's
+            msg.reply(`Please check your direct messages.`);
 
             // Setup an await so we can get a response on the category they want to look at.
             ms.channel.awaitMessages(filter, {
