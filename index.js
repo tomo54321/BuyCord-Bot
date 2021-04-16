@@ -4,7 +4,7 @@ const ServerCommands = require("./modules/ServerCommands").commands;
 
 const DMCommands = require("./modules/DmCommands").handle;
 
-const token = "NzA1NzM3NjM2MTY1MzIwNzM1.XqwDcA.fNn_oAzpiV76IS_6Ja1QJX_ywTc";
+const token = "Discord Bot Token Goes Here";
 const prefix = "!";
 
 client.on("ready", () => {
